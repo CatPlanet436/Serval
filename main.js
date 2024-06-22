@@ -7,6 +7,7 @@ let ids = ["div0", "div1", "div2", "div3", "div4", "div5", "div6", "div7", "div8
 
 let typeClick = 1;
 let date = Date.now();
+let dateText = Date.now();
 function Click(divID) {
     if (divID === clickDiv) {
         timeClick();
@@ -83,8 +84,10 @@ function lvlUP(divID) {
 function timeClick() {
     date -= Date.now();
     if (date * -1 <= 2000) {
-        dataTimeS.push(date * -1)
-        labelsTimeS.push("мс")
+        buttonTimeS.push(date * -1)
+        if (buttonTimeS.length > labelsTimeS.length) {
+            labelsTimeS.push("мс")
+        }
     }
     date = Date.now();
     dataTime()
@@ -92,7 +95,8 @@ function timeClick() {
 
 
 let labelsTimeS = [];
-let dataTimeS = [];
+let buttonTimeS = [];
+let textTimeS = [];
 let myChart = null;
 function dataTime() {
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -106,12 +110,18 @@ function dataTime() {
             labels: labelsTimeS,
             datasets: [
                 {
-                    label: 'Реакция',
-                    data: dataTimeS,
+                    label: 'Кнопки',
+                    data: buttonTimeS,
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1,
-                },
+                },{
+                    label: 'Клавиши',
+                    data: textTimeS,
+                    backgroundColor: 'rgba(99,130,255,0.2)',
+                    borderColor: 'rgb(99,135,255)',
+                    borderWidth: 1,
+                }
             ],
         },
         options: {
@@ -135,3 +145,26 @@ function logorifm(num, num2) {
         num *= 2;
     return num;
 }
+
+let key = "a";
+const keys = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f",
+    "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"]
+addEventListener('keydown', listener => {
+    if (key === listener.key) {
+        localStorage.money = Number(localStorage.money) + Number(localStorage.moneyPerClick);
+        document.getElementById("div1").innerHTML = localStorage.money;
+        key = keys[random(0, keys.length - 1)]
+        document.getElementById("div0").innerHTML = key;
+
+
+        dateText -= Date.now();
+        if (dateText * -1 <= 2000) {
+            textTimeS.push(dateText * -1)
+            if (textTimeS.length > labelsTimeS.length) {
+                labelsTimeS.push("мс")
+            }
+        }
+        dateText = Date.now();
+        dataTime()
+    }
+});
