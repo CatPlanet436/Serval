@@ -45,8 +45,14 @@ function Click(divID) {
             document.getElementById(ids[clickDiv]).style.background = "limegreen";
             typeClick = 1;
         }
-        document.getElementById("div1").innerHTML = localStorage.money;
     }
+    else {
+        localStorage.money = Number(localStorage.money) - Number(localStorage.moneyPerClick)
+        if (Number(localStorage.money) < 0) {
+            localStorage.money = 0;
+        }
+    }
+    document.getElementById("div1").innerHTML = localStorage.money;
 }
 
 let lucky = random(1, 18);
@@ -89,6 +95,12 @@ function timeClick() {
             labelsTimeS.push("мс")
         }
     }
+    if (buttonTimeS.length > 50) {
+        buttonTimeS.shift();
+    }
+    if (labelsTimeS.length > 50) {
+        labelsTimeS.shift();
+    }
     date = Date.now();
     dataTime()
 }
@@ -125,6 +137,9 @@ function dataTime() {
             ],
         },
         options: {
+            layout: {
+                padding: 100
+            },
             scales: {
                 yAxes: [
                     {
@@ -163,6 +178,12 @@ addEventListener('keydown', listener => {
             if (textTimeS.length > labelsTimeS.length) {
                 labelsTimeS.push("мс")
             }
+        }
+        if (labelsTimeS.length > 50) {
+            labelsTimeS.shift();
+        }
+        if (textTimeS.length > 50) {
+            textTimeS.shift();
         }
         dateText = Date.now();
         dataTime()
