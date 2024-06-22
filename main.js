@@ -191,27 +191,3 @@ addEventListener('keydown', listener => {
 });
 
 
-const datas = new delbot.data.DataSimplePosition({xSize: 35, numClasses: 1});
-const filePath = "../../python/sessions_human_only.json"; // path from code to sessions_human_only.json
-
-const datatraining = new delbotrain.DataTraining({
-    filePath: filePath,
-    data: datas,
-    trainingRatio: .9 // use 90% of the dataset as training set and 10% as validation
-});
-
-// Delay for tfjs-vis used in constructor
-document.addEventListener('DOMContentLoaded', () => {
-    const gan = new delbotrain.GAN({
-        dataTraining: datatraining, // xSize is 35 so the generator outputs 35 movements per trajectories
-        epoch: 1000,
-        batchSize: 64,
-        generatorSeedSize: 100, // generator input is 100 random numbers
-        useTfjsVis: true,
-        consoleInfo: true,
-        downloadModels: 50, // save models every 50 epochs
-        downloadSample: true
-    });
-
-    gan.train(1); // training number 1 to have unique ID per GAN train
-});
