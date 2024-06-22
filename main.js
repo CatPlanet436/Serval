@@ -8,6 +8,16 @@ let ids = ["div0", "div1", "div2", "div3", "div4", "div5", "div6", "div7", "div8
 let typeClick = 1;
 let date = Date.now();
 let dateText = Date.now();
+
+let timeBotDown = 0;
+let timeBotUp = 0;
+addEventListener('mousedown', () => {
+    timeBotDown = Date.now();
+})
+addEventListener('mouseup', () => {
+    timeBotUp = Date.now();
+    console.log(timeBotUp - timeBotDown)
+})
 function Click(divID) {
     if (divID === clickDiv) {
         timeClick();
