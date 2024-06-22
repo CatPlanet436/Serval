@@ -17,8 +17,8 @@ addEventListener('mousedown', () => {
 addEventListener('mouseup', () => {
     timeBotUp = Date.now();
     if((timeBotUp - timeBotDown) < 20) {
-        localStorage.money = Number(localStorage.money) - Number(localStorage.moneyPerClick);
-        alert("Использовать бота ненадо, Серваль. только что у тебя отнялись деньги, вот так вот")
+        localStorage.money = Math.floor(Number(localStorage.money) / 2);
+        alert("Использовать бота ненадо, Серваль. ты сам этого захотел, так что все твои деньги делятся на два:з")
         document.getElementById("div1").innerHTML = localStorage.money;
     }
 })
