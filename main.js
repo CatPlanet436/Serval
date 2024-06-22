@@ -17,7 +17,9 @@ addEventListener('mousedown', () => {
 addEventListener('mouseup', () => {
     timeBotUp = Date.now();
     if((timeBotUp - timeBotDown) < 20) {
-        alert("Сервал выключи бота иначе я все тебе вырублю нахуй")
+        localStorage.money = Number(localStorage.money) - Number(localStorage.moneyPerClick);
+        alert("Использовать бота ненадо, Серваль. только что у тебя отнялись деньги, вот так вот")
+        document.getElementById("div1").innerHTML = localStorage.money;
     }
 })
 function Click(divID) {
