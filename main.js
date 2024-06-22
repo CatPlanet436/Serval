@@ -16,7 +16,9 @@ addEventListener('mousedown', () => {
 })
 addEventListener('mouseup', () => {
     timeBotUp = Date.now();
-    console.log(timeBotUp - timeBotDown)
+    if((timeBotUp - timeBotDown) < 20) {
+        alert("Сервал выключи бота иначе я все тебе вырублю нахуй")
+    }
 })
 function Click(divID) {
     if (divID === clickDiv) {
