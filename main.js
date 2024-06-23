@@ -9,6 +9,8 @@ let typeClick = 1;
 let date = Date.now();
 let dateText = Date.now();
 
+let isAndroid = checkAndroid();
+
 //let timeBotDown = 0;
 //let timeBotUp = 0;
 //addEventListener('mousedown', () => {
@@ -132,37 +134,39 @@ let buttonTimeS = [];
 let textTimeS = [];
 let myChart = null;
 function dataTime() {
-    const ctx = document.getElementById('myChart').getContext('2d');
+    if (isAndroid == false) {
+        const ctx = document.getElementById('myChart').getContext('2d');
 
-    if (myChart != null) {
-        myChart.destroy()
-    }
-    myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labelsTimeS,
-            datasets: [
-                {
-                    label: 'Кнопки',
-                    data: buttonTimeS,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1,
-                },{
-                    label: 'Клавиши',
-                    data: textTimeS,
-                    backgroundColor: 'rgba(99,130,255,0.2)',
-                    borderColor: 'rgb(99,135,255)',
-                    borderWidth: 1,
-                }
-            ],
-        },
-        options: {
-            layout: {
-                padding: 100
+        if (myChart != null) {
+            myChart.destroy()
+        }
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labelsTimeS,
+                datasets: [
+                    {
+                        label: 'Кнопки',
+                        data: buttonTimeS,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                    },{
+                        label: 'Клавиши',
+                        data: textTimeS,
+                        backgroundColor: 'rgba(99,130,255,0.2)',
+                        borderColor: 'rgb(99,135,255)',
+                        borderWidth: 1,
+                    }
+                ],
             },
-        },
-    });
+            options: {
+                layout: {
+                    padding: 100
+                },
+            },
+        });
+    }
 }
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -199,6 +203,10 @@ function calcCostLvlUp() {
             document.getElementById(lvlUPID_S[i - 1]).style.boxShadow = ""
         }
     }
+}
+function checkAndroid() {
+    const mediaQuery = window.matchMedia('(max-width: 981px)');
+    return mediaQuery.matches;
 }
 
 let key = "a";
