@@ -87,20 +87,29 @@ document.getElementById(lvlUPID_S[lucky - 1]).innerHTML = (logorifm(25, lucky - 
 function lvlUP(divID) {
 
     if (Number(localStorage.money) >= logorifm(25, divID)) {
-        if (divID === lucky) {
-            localStorage.money = Number(localStorage.money) - logorifm(25, divID)
-            localStorage.moneyPerClick = Number(localStorage.moneyPerClick) + logorifm(2, divID) * 1.5
-            document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
+        if (divID === 17) {
+            for(Number(localStorage.money); Number(localStorage.money) >= logorifm(25, divID); Number(localStorage.money) - logorifm(25, divID)) {
+                localStorage.money = Number(localStorage.money) - logorifm(25, divID)
+                localStorage.moneyPerClick = Number(localStorage.moneyPerClick) + logorifm(2, divID) * 1.5
+                document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
+            }
         }
         else {
-            localStorage.money = Number(localStorage.money) - logorifm(25, divID)
-            localStorage.moneyPerClick = Number(localStorage.moneyPerClick) + logorifm(2, divID)
-            document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
+            if (divID === lucky) {
+                localStorage.money = Number(localStorage.money) - logorifm(25, divID)
+                localStorage.moneyPerClick = Number(localStorage.moneyPerClick) + logorifm(2, divID) * 1.5
+                document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
+            }
+            else {
+                localStorage.money = Number(localStorage.money) - logorifm(25, divID)
+                localStorage.moneyPerClick = Number(localStorage.moneyPerClick) + logorifm(2, divID)
+                document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
+            }
         }
         document.getElementById(lvlUPID_S[lucky - 1]).style.backgroundColor = "#d34d17";
         document.getElementById(lvlUPID_S[lucky - 1]).innerHTML = (logorifm(25, lucky - 1)) + "x" + (logorifm(2, lucky - 1));
 
-        lucky = random(1, 18);
+        lucky = random(1, 17);
         document.getElementById(lvlUPID_S[lucky - 1]).style.backgroundColor = "#FF0000";
         document.getElementById(lvlUPID_S[lucky - 1]).innerHTML = (logorifm(25, lucky - 1)) + "x" + (logorifm(2, lucky - 1) * 1.5);
 
