@@ -1,63 +1,122 @@
 html {
     padding: 15px;
 }
-header {
-    display: grid;
-    gap: 30px;
-    height: 93vh;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-}
-.click {
-    background-color: #ca0000;
-    border-radius: 50px;
-    transition: box-shadow 200ms, transform 100ms;
-    font-family: Arial, sans-serif;
-    font-size: 80px;
-    color: white;
-    text-align: center;
-    user-select: none;
-    &:hover {
-        box-shadow: #616161 0 0 15px 3px;
-        transform: scale(1.05);
+@media screen and (min-width: 650px) {
+    header {
+        display: grid;
+        gap: 2vw;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
     }
-    &:active {
-        transform: scale(0.9);
-        box-shadow: #616161 0 0 0 0;
+    .click {
+        background-color: #ca0000;
+        border-radius: 4vw;
+        transition: box-shadow 200ms, transform 100ms;
+        font-family: Arial, sans-serif;
+        font-size: 5vw;
+        padding-bottom: 15px;
+        padding-top: 10px;
+        color: white;
+        text-align: center;
+        user-select: none;
+        &:hover {
+            box-shadow: #616161 0 0 15px 3px;
+            transform: scale(1.05);
+        }
+        &:active {
+            transform: scale(0.9);
+            box-shadow: #616161 0 0 0 0;
+        }
     }
-}
-#div1 {
-    background-color: limegreen;
+    #div1 {
+        background-color: limegreen;
+    }
+
+    footer {
+        display: grid;
+        gap: 2vw;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+    }
+    .lvlUP {
+        background-color: #d34d17;
+        border-radius: 4vw;
+        transition: box-shadow 200ms, transform 100ms;
+        font-family: Arial, sans-serif;
+        font-size: 3.3vw;
+        padding: 2vw;
+        color: white;
+        text-align: center;
+        user-select: none;
+
+        &:hover {
+            box-shadow: #616161 0 0 15px 3px;
+            transform: scale(1.05);
+        }
+        &:active {
+            transform: scale(0.9);
+            box-shadow: #616161 0 0 0 0;
+        }
+    }
+    .lvlUPText {
+        text-align: center;
+        font-size: 8vw;
+        font-family: Arial, sans-serif;
+    }
 }
 
-footer {
-    display: grid;
-    gap: 30px;
-    height: 40vh;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-}
-.lvlUP {
-    background-color: #d34d17;
-    border-radius: 50px;
-    transition: box-shadow 200ms, transform 100ms;
-    font-family: Arial, sans-serif;
-    font-size: 55px;
-    padding: 30px;
-    color: white;
-    text-align: center;
-    user-select: none;
-    &:hover {
-        box-shadow: #616161 0 0 15px 3px;
-        transform: scale(1.05);
+
+@media screen and (max-width: 650px) {
+    header {
+        display: grid;
+        gap: 2vw;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
     }
-    &:active {
-        transform: scale(0.9);
-        box-shadow: #616161 0 0 0 0;
+    .click {
+        background-color: #ca0000;
+        border-radius: 4vw;
+        transition: box-shadow 200ms, transform 100ms;
+        font-family: Arial, sans-serif;
+        font-size: 5vw;
+        padding-bottom: 15px;
+        padding-top: 10px;
+        color: white;
+        text-align: center;
+        user-select: none;
+        &:active {
+            transform: scale(0.9);
+            box-shadow: #616161 0 0 0 0;
+        }
     }
-}
-.lvlUPText {
-    text-align: center;
-    font-size: 120px;
-    font-family: Arial, sans-serif;
+    #div1 {
+        background-color: limegreen;
+    }
+
+    footer {
+        display: grid;
+        gap: 2vw;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+    }
+    .lvlUP {
+        background-color: #d34d17;
+        border-radius: 4vw;
+        transition: box-shadow 200ms, transform 100ms;
+        font-family: Arial, sans-serif;
+        font-size: 3.5vw;
+        padding: 2vw;
+        color: white;
+        text-align: center;
+        user-select: none;
+        &:active {
+            transform: scale(0.9);
+            box-shadow: #616161 0 0 0 0;
+        }
+    }
+    .lvlUPText {
+        text-align: center;
+        font-size: 9vw;
+        font-family: Arial, sans-serif;
+    }
 }

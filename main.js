@@ -16,11 +16,16 @@ addEventListener('mousedown', () => {
 })
 addEventListener('mouseup', () => {
     timeBotUp = Date.now();
-    if((timeBotUp - timeBotDown) < 20) {
+    if((timeBotUp - timeBotDown) < 15) {
         localStorage.money = Math.floor(Number(localStorage.money) / 2);
         alert("Использовать бота ненадо, Серваль. ты сам этого захотел, так что все твои деньги делятся на два:з")
-        document.getElementById("div1").innerHTML = localStorage.money;
+        document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
+        calcCostLvlUp()
     }
+})
+
+addEventListener("click", ev => {
+    console.log(ev)
 })
 function Click(divID) {
     if (divID === clickDiv) {
@@ -66,7 +71,8 @@ function Click(divID) {
             localStorage.money = 0;
         }
     }
-    document.getElementById("div1").innerHTML = localStorage.money;
+    document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
+    calcCostLvlUp()
 }
 
 let lucky = random(1, 18);
@@ -82,12 +88,12 @@ function lvlUP(divID) {
         if (divID === lucky) {
             localStorage.money = Number(localStorage.money) - logorifm(25, divID)
             localStorage.moneyPerClick = Number(localStorage.moneyPerClick) + logorifm(2, divID) * 1.5
-            document.getElementById("div1").innerHTML = localStorage.money;
+            document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
         }
         else {
             localStorage.money = Number(localStorage.money) - logorifm(25, divID)
             localStorage.moneyPerClick = Number(localStorage.moneyPerClick) + logorifm(2, divID)
-            document.getElementById("div1").innerHTML = localStorage.money;
+            document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
         }
         document.getElementById(lvlUPID_S[lucky - 1]).style.backgroundColor = "#d34d17";
         document.getElementById(lvlUPID_S[lucky - 1]).innerHTML = (logorifm(25, lucky - 1)) + "x" + (logorifm(2, lucky - 1));
@@ -95,10 +101,12 @@ function lvlUP(divID) {
         lucky = random(1, 18);
         document.getElementById(lvlUPID_S[lucky - 1]).style.backgroundColor = "#FF0000";
         document.getElementById(lvlUPID_S[lucky - 1]).innerHTML = (logorifm(25, lucky - 1)) + "x" + (logorifm(2, lucky - 1) * 1.5);
+
     }
     else {
         alert("Недостаточно монет");
     }
+    calcCostLvlUp()
 }
 
 function timeClick() {
@@ -118,8 +126,7 @@ function timeClick() {
     date = Date.now();
     dataTime()
 }
-
-
+calcCostLvlUp()
 let labelsTimeS = [];
 let buttonTimeS = [];
 let textTimeS = [];
@@ -154,15 +161,6 @@ function dataTime() {
             layout: {
                 padding: 100
             },
-            scales: {
-                yAxes: [
-                    {
-                        ticks: {
-                            beginAtZero: true,
-                        },
-                    },
-                ],
-            },
         },
     });
 }
@@ -174,6 +172,34 @@ function logorifm(num, num2) {
         num *= 2;
     return num;
 }
+function calcMoney(num) {
+    if (num < 1000) {
+        return String(num);
+    }else if (num < 1000000) {
+        return String(num).slice(0, -3) + "k";
+    }else if (num < 1000000000) {
+        return String(num).slice(0, -6) + "m";
+    }else if (num < 1000000000000) {
+        return String(num).slice(0, -9) + "b";
+    }else if (num < 1000000000000000) {
+        return String(num).slice(0, -12) + "t";
+    }else if (num < 1000000000000000000) {
+        return String(num).slice(0, -15) + "kv";
+    }else if (num < 1000000000000000000000) {
+        return String(num).slice(0, -18) + "kvi";
+    }else if (num < 1000000000000000000000000) {
+        return String(num).slice(0, -21) + "sex";
+    }
+}
+function calcCostLvlUp() {
+    for (i = 18; i > 0; i--) {
+        if (Number(localStorage.money) >= logorifm(25, i - 1)) {
+            document.getElementById(lvlUPID_S[i - 1]).style.boxShadow = "#10ef05 0 0 15px 3px"
+        } else {
+            document.getElementById(lvlUPID_S[i - 1]).style.boxShadow = ""
+        }
+    }
+}
 
 let key = "a";
 const keys = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f",
@@ -181,7 +207,7 @@ const keys = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "
 addEventListener('keydown', listener => {
     if (key === listener.key) {
         localStorage.money = Number(localStorage.money) + Number(localStorage.moneyPerClick);
-        document.getElementById("div1").innerHTML = localStorage.money;
+        document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
         key = keys[random(0, keys.length - 1)]
         document.getElementById("div0").innerHTML = key;
 
