@@ -9,20 +9,20 @@ let typeClick = 1;
 let date = Date.now();
 let dateText = Date.now();
 
-let timeBotDown = 0;
-let timeBotUp = 0;
-addEventListener('mousedown', () => {
-    timeBotDown = Date.now();
-})
-addEventListener('mouseup', () => {
-    timeBotUp = Date.now();
-    if((timeBotUp - timeBotDown) < 15) {
-        localStorage.money = Math.floor(Number(localStorage.money) / 2);
-        alert("Использовать бота ненадо, Серваль. ты сам этого захотел, так что все твои деньги делятся на два:з")
-        document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
-        calcCostLvlUp()
-    }
-})
+//let timeBotDown = 0;
+//let timeBotUp = 0;
+//addEventListener('mousedown', () => {
+//    timeBotDown = Date.now();
+//})
+//addEventListener('mouseup', () => {
+//    timeBotUp = Date.now();
+//    if((timeBotUp - timeBotDown) < 15) {
+//        localStorage.money = Math.floor(Number(localStorage.money) / 2);
+//        alert("Использовать бота ненадо, Серваль. ты сам этого захотел, так что все твои деньги делятся на два:з")
+//        document.getElementById("div1").innerHTML = calcMoney(Number(localStorage.money));
+//        calcCostLvlUp()
+//    }
+//})
 
 addEventListener("click", ev => {
     console.log(ev)
