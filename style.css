@@ -1,7 +1,7 @@
 html {
     padding: 15px;
 }
-@media screen and (min-width: 768px) {
+@media screen and (max-resolution: 300dpi) {
     header {
         display: grid;
         gap: 2vw;
@@ -65,8 +65,7 @@ html {
     }
 }
 
-
-@media screen and (max-width: 768px) {
+@media screen and (min-resolution: 300dpi) {
     header {
         display: grid;
         gap: 2vw;
